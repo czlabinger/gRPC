@@ -1,2 +1,3 @@
 */venv/*
-*/target/*
+server/.idea/*
+server/.settings/*
