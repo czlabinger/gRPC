@@ -1,5 +1,3 @@
-# gRPC
-
 ## Creating .proto file
 
 ```protobuf
@@ -79,13 +77,13 @@ Adding dependencies for gRPC
             <artifactId>grpc-netty-shaded</artifactId>
             <version>${grpc.version}</version>
         </dependency>
-
+        
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
             <version>${grpc.version}</version>
         </dependency>
-
+        
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-stub</artifactId>
@@ -150,7 +148,7 @@ Sources are now generated
 
       //Add WarehouseData
 			//...
-
+			
       Hello.WarehouseData serializedWarehouseData = warehouseDataBuilder.build();
 
       responseObserver.onNext(serializedWarehouseData);
@@ -186,6 +184,40 @@ python -m grpc_tools.protoc -I/home/stoffi05/Documents/School/4xHIT/SYT/DZS/gRPC
 ```
 
 A connection to the server via [localhost:8999](http://localhost:8999) is created and a WarehouseRequest is created with id=001. Then the request gets send to the getData method of the server.
+
+## Questions
+
+- What is gRPC and why does it work accross languages and platforms?
+    - high-performance
+    - open-source framework
+    - developed by Google
+    - enables communication between services using HTTP for transport and Protocol Buffers (Protobuf) as the interface definition language
+    - It is language-agnostic, meaning it allows developers to define services and message types in .proto files, which can then be compiled into source code for any of the supported languages
+- Describe the RPC life cycle starting with the RPC client?
+    - Unary RPC: The client sends a single request and waits for a single response.
+    - Server streaming RPC: The client sends a request and receives a stream of responses from the server.
+    - Client streaming RPC: The client sends a stream of requests and waits for a single response from the server.
+    - Bidirectional streaming RPC: Both the client and server send streams of messages to each other concurrently
+- Describe the workflow of Protocol Buffers?
+    - It allows you to define simple data structures in a special format, which can then be compiled into source code for multiple languages
+- What are the benefits of using protocol buffers?
+    - Efficiency: Protobuf serializes data into a binary format, which is more compact and faster to process than text-based formats like JSON.
+    - Language-agnosticism: Protobuf allows for code generation in multiple languages, facilitating interoperability across different technology stacks.
+    - Strong ****typing: Protobuf enforces strong typing, which helps prevent errors and mismatches when data is exchanged between services.
+    - Extensibility: You can add new fields or methods to your services and messages without breaking existing client code, which is particularly useful in distributed systems.
+    - Code ****generation: The Protobuf compiler generates
+    client and server code from .proto files, reducing manual coding effort
+    and ensuring consistency
+- When is the use of protocol not recommended?
+    - Human readability of the data format is a priority, as Protobuf is a binary format.
+    - The data structures are not well-defined or frequently changing, as Protobuf requires a schema definition.
+    - The system does not require the efficiency gains provided by binary
+    serialization, such as in simple applications or when the data size is
+    small.
+- List 3 different data types that can be used with protocol buffers?
+    - `int32`
+    - `string`
+    - `message`
 
 ## Sources
 
