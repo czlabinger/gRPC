@@ -2,7 +2,7 @@ package at.czlabinger;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import service.GreeterImpl;
+import service.WarehouseImpl;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import java.io.IOException;
 public class App {
     public static void main( String[] args ) {
         try {
-            Server server = ServerBuilder.forPort(8999).addService(new GreeterImpl()).build();
+            Server server = ServerBuilder.forPort(8999).addService(new WarehouseImpl()).build();
 
             server.start();
             System.out.println("Server started at " + server.getPort());

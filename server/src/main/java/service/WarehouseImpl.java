@@ -7,7 +7,7 @@ import io.grpc.stub.StreamObserver;
 import warehouseProto.WarehouseGrpc;
 import warehouseProto.Hello;
 
-public class GreeterImpl extends WarehouseGrpc.WarehouseImplBase {
+public class WarehouseImpl extends WarehouseGrpc.WarehouseImplBase {
 
     @Override
     public void getData(Hello.WarehouseRequest request, StreamObserver<Hello.WarehouseData> responseObserver) {
