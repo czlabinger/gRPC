@@ -5,7 +5,7 @@ import grpc
 import hello_pb2 as hello__pb2
 
 
-class GreeterStub(object):
+class WarehouseStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -14,42 +14,42 @@ class GreeterStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.sayHello = channel.unary_unary(
-                '/hello.Greeter/sayHello',
-                request_serializer=hello__pb2.HelloRequest.SerializeToString,
-                response_deserializer=hello__pb2.HelloReply.FromString,
+        self.getData = channel.unary_unary(
+                '/Warehouse/getData',
+                request_serializer=hello__pb2.WarehouseRequest.SerializeToString,
+                response_deserializer=hello__pb2.WarehouseData.FromString,
                 )
 
 
-class GreeterServicer(object):
+class WarehouseServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def sayHello(self, request, context):
+    def getData(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_GreeterServicer_to_server(servicer, server):
+def add_WarehouseServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'sayHello': grpc.unary_unary_rpc_method_handler(
-                    servicer.sayHello,
-                    request_deserializer=hello__pb2.HelloRequest.FromString,
-                    response_serializer=hello__pb2.HelloReply.SerializeToString,
+            'getData': grpc.unary_unary_rpc_method_handler(
+                    servicer.getData,
+                    request_deserializer=hello__pb2.WarehouseRequest.FromString,
+                    response_serializer=hello__pb2.WarehouseData.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'hello.Greeter', rpc_method_handlers)
+            'Warehouse', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class Greeter(object):
+class Warehouse(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def sayHello(request,
+    def getData(request,
             target,
             options=(),
             channel_credentials=None,
@@ -59,8 +59,8 @@ class Greeter(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/hello.Greeter/sayHello',
-            hello__pb2.HelloRequest.SerializeToString,
-            hello__pb2.HelloReply.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Warehouse/getData',
+            hello__pb2.WarehouseRequest.SerializeToString,
+            hello__pb2.WarehouseData.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
